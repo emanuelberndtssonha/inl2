@@ -6,7 +6,12 @@ from linked_list import LinkedList
 
 DATA_DIR = "träningsdata"
 
+def ensure_data_dir_exists() -> None:
+    if not os.path.exists(DATA_DIR):
+        os.makedirs(DATA_DIR)
+
 def get_filename(year: int, month: int) -> str:
+    ensure_data_dir_exists()
     return f"{DATA_DIR}/sessions_{year}_{month:02d}.json"
 
 def save_month_to_file(year: int, month: int, linked_list: LinkedList) -> None:
